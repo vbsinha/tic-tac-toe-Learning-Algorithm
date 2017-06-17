@@ -15,7 +15,10 @@ class ComputerPlayer():
 	def play(self,board):
 		move = self.find_best_move(board)
 		self.update_probs(board,move)
-		board.play(self.player_id, board)
+		return move
+		
+	def get_id(self):
+		return self.player_id
 		
 	def find_best_move(self,board):
 		best_move_probability = 0.5
