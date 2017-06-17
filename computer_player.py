@@ -21,8 +21,8 @@ class ComputerPlayer():
 		wont_explore = random.randint(0,int(1./self.random_explore_prob))
 		playable_moves = board.get_playable_squares()
 		if wont_explore == 0:			
-			move = random.randint(0,len(playable_moves))
-			return move
+			move_id = random.randint(0,len(playable_moves))
+			return playable_moves[move_id]
 		for available_move in playable_moves:
 			curr_prob = self.check_and_get_prob(board,available_move)
 			if curr_prob >= best_move_probability:
