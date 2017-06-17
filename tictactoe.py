@@ -1,4 +1,4 @@
-class TicTacToe:
+class TicTacToe(object):
 
     def __init__(self):
         self.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -7,17 +7,17 @@ class TicTacToe:
         return self.board[square[0]][square[1]] == 0
         
     def play(self, player, square):
-        assert((player == 1 or player == 2) and is_playable(square))
+        assert((player == 1 or player == 2) and self.is_playable(square))
         self.board[square[0]][square[1]] = player
         
     def is_game_over(self):
-        if (get_winner() == 1 or get_winner() == 2):
-        	return true
+        if (self.get_winner() == 1 or self.get_winner() == 2):
+        	return True
         for i in self.board:
             for j in i:
                 if j == 0:
-                    return false
-        return true
+                    return False
+        return True
     
     def get_board(self):
     	return self.board
@@ -47,6 +47,9 @@ class TicTacToe:
         return [(i,j) for i in xrange(3) for j in xrange(3) if self.board[i][j] == 0]
     
     def __str__(self):
-        return print self.board[0] + '\n' +\
-                     self.board[1] + '\n' +\
-                     self.board[2] + '\n'
+        return str(self.board[0]) + '\n' +\
+               str(self.board[1]) + '\n' +\
+               str(self.board[2]) + '\n'
+                     
+# if __name__ == "__main__":
+#     print "Tic Tac Toe Board"
