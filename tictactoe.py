@@ -19,6 +19,9 @@ class TicTacToe(object):
                     return False
         return True
     
+    def get_board(self):
+    	return self.board
+    
     '''
     Returns player number of winner if any, 0 otherwise
     '''
