@@ -1,5 +1,6 @@
 from tictactoe import TicTacToe
-from computer_play import ComputerPlayer
+#from computer_play import ComputerPlayer
+from optimalBot import OptimalBot
 
 def input_coordinate():
     print "Enter the coordinates to play"
@@ -23,7 +24,7 @@ def human2human_play():
     print board
     print "Winner is player ", board.get_winner()
     
-def humancomputer_play(computer):
+'''def humancomputer_play(computer):
 	board = TicTacToe()
     while not board.is_game_over():
         print board
@@ -56,7 +57,27 @@ def play_against_computer():
     alpha = input("Enter the value of alpha : ")
     computer_player = ComputerPlayer(file_path,computer_num,prob,alpha)
     
-    # Yet to be implemented 
+    # Yet to be implemented '''
+    
+def train(policy_filepath):
+	board = TicTacToe()
+	bot1 = OptimalBot(policy_filepath, 1, board)
+	bot2 = OptimalBot(policy_filepath, 2, board)
+	
+	while not board.is_game_over():
+		print board
+		# print "Bot 1 plays"
+		bot1.play(True)
+		if not board.is_game_over():
+			print board
+			# print "Bot 2 plays"
+			bot2.play(True)
+    
+	print board
+	print "Winner is player ", board.get_winner()
+
+	bot1.update()
+	bot2.update()
     
 def main():
     print "Select an option:"
@@ -72,6 +93,9 @@ def main():
         print "Enter the number of matches to train"
         num_match = input()
         assert(type(num_match) == int)
+        policy_filepath = raw_input("Enter the path to policy file\n")        
+        for _ in xrange(num_match):
+        	train(policy_filepath)
         # train(num_match)
         
     elif choice == 2:
